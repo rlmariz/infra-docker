@@ -18,3 +18,31 @@ If you want to learn more about creating good readme files then refer the follow
 - [ASP.NET Core](https://github.com/aspnet/Home)
 - [Visual Studio Code](https://github.com/Microsoft/vscode)
 - [Chakra Core](https://github.com/Microsoft/ChakraCore)
+
+
+# Docker Network
+
+sudo \
+docker network create \
+  --driver=bridge \
+  --subnet=172.20.0.0/24 \
+  --ip-range=172.20.0.0/24 \
+  --gateway=172.20.0.1 \
+  net-docker
+
+
+
+# Portforwand WSL2
+netsh interface portproxy show all
+netsh interface portproxy reset
+
+netsh interface portproxy add v4tov4 listenport=1433 listenaddress=0.0.0.0 connectport=1433 connectaddress=ubuntu.wsl
+
+# Problema de troca de ip
+https://github.com/shayne/go-wsl2-host
+
+# Automatic Start
+ wsl sudo nano /etc/wsl.conf
+
+ [boot]
+command="service docker start"
