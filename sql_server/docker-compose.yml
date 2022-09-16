@@ -1,0 +1,43 @@
+# Permissão SQL Server pasta no Host
+# sudo chown 10001 /mnt/d/sql-2022
+# sudo chown 10001 /mnt/d/sql-2019
+version: "3.7"
+services:
+    sql-2019:
+        image: mcr.microsoft.com/mssql/server:2019-latest
+        environment:
+            - SA_PASSWORD=data@2019
+            - ACCEPT_EULA=Y
+            - TZ=America/Sao_Paulo
+        ports:
+            - "51433:1433"
+        container_name: sql_2019
+        hostname: SQL2019
+        restart: unless-stopped
+        networks:
+            net-docker:
+                ipv4_address: 172.20.0.2          
+        volumes:        
+            - /mnt/d/sql-2019:/var/opt/mssql/data
+
+    sql-2022:
+        image: mcr.microsoft.com/mssql/server:2022-latest
+        environment:
+            - SA_PASSWORD=data@2022
+            - ACCEPT_EULA=Y
+            - TZ=America/Sao_Paulo
+        ports:
+            - "1433:1433"
+        container_name: sql_2022
+        hostname: SQL2022
+        restart: unless-stopped
+        networks:
+            net-docker:
+                ipv4_address: 172.20.0.3
+        volumes:        
+            - /mnt/d/sql-2022:/var/opt/mssql/data
+
+networks:
+  net-docker:
+    name: net-docker
+    external: true   
