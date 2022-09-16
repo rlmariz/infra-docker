@@ -1,6 +1,3 @@
-# http://get-carbon.org/Import-Carbon.ps1.html
-.\Carbon\Carbon\Import-Carbon.ps1
-
 # check if you are in administration mode, if not, ask for authorization
 If (-NOT ([Security.Principal.WindowsPrincipal][Security.Principal.WindowsIdentity]::GetCurrent()).IsInRole([Security.Principal.WindowsBuiltInRole] "Administrator"))
 {   
@@ -8,6 +5,9 @@ If (-NOT ([Security.Principal.WindowsPrincipal][Security.Principal.WindowsIdenti
 	Start-Process powershell -Verb runAs -ArgumentList $arguments
 	Break
 }
+
+# http://get-carbon.org/Import-Carbon.ps1.html
+.\Carbon\Import-Carbon.ps1
 
 # wsl.exe ubuntu dir
 # wsl -t ubuntu
