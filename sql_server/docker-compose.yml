@@ -14,9 +14,10 @@ services:
         container_name: sql_2019
         hostname: SQL2019
         restart: unless-stopped
-        networks:
-            net-docker:
-                ipv4_address: 172.20.0.2          
+        network_mode: bridge
+        # networks:
+            # net-docker:
+            #     ipv4_address: 172.20.0.2          
         volumes:        
             - /mnt/d/sql-2019:/var/opt/mssql/data
 
@@ -31,13 +32,16 @@ services:
         container_name: sql_2022
         hostname: SQL2022
         restart: unless-stopped
-        networks:
-            net-docker:
-                ipv4_address: 172.20.0.3
+        network_mode: bridge
+        # networks:
+        #     net-docker:
+        #         ipv4_address: 172.20.0.3
         volumes:        
             - /mnt/d/sql-2022:/var/opt/mssql/data
 
-networks:
-  net-docker:
-    name: net-docker
-    external: true   
+# networks:
+#   net-docker:
+#     name: net-docker
+#     external: true   
+    # bridge:
+#   name: 	bridge

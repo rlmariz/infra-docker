@@ -30,7 +30,7 @@ docker network create \
   --gateway=172.20.0.1 \
   net-docker
 
-
+docker network create --driver=bridge --subnet=172.20.0.0/24 --ip-range=172.20.0.0/24 --gateway=172.20.0.1 net-docker
 
 # Portforwand WSL2
 netsh interface portproxy show all
